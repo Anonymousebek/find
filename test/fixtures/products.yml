@@ -1,11 +1,11 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  title: MyString
-  description: MyText
+dune:
+  title: Dune
+  description: Dune book
   price: 9.99
 
-two:
-  title: MyString
-  description: MyText
-  price: 9.99
+hunger_games:
+  title: The Hunger Games
+  description: The Hunger Games book
+  price: 19.99

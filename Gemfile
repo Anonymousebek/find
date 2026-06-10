@@ -67,7 +67,6 @@ group :test do
   gem "selenium-webdriver"
 end
 
-# Gemfile
 gem "tapioca", require: false, group: [ :development, :test ]
 
 gem "hotwire-spark", "~> 0.1.13", group: :development

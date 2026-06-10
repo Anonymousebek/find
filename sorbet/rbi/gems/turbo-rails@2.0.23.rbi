@@ -392,7 +392,6 @@ module Turbo::RequestIdTracking
   def turbo_tracking_request_id(&block); end
 end
 
-# pkg:gem/turbo-rails#lib/turbo/system_test_helper.rb:109
 module Turbo::Streams; end
 
 class Turbo::Streams::ActionBroadcastJob < ::ActiveJob::Base

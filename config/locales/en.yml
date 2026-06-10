@@ -28,4 +28,9 @@
 #       enabled: "ON"
 
 en:
-  hello: "Hello world"
+  errors:
+    models:
+      products:
+        attributes:
+          title:
+            taken: "Product title has already been taken"

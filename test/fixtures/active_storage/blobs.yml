@@ -1,0 +1,4 @@
+dune_blog: <%= ActiveStorage::FixtureSet.blob filename: 'dune.jpg', service_name: 'test' %>
+hunger_games_blob: <%= ActiveStorage::FixtureSet.blob filename: 'hunger_games.png', service_name: 'test' %>
+ruby_pickaxe_blob: <%= ActiveStorage::FixtureSet.blob filename: 'ruby_pickaxe_3.gif', service_name: 'test' %>
+

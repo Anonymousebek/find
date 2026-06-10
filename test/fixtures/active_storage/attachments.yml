@@ -1,0 +1,14 @@
+dune_image:
+  name: image
+  record: dune (Product)
+  blob: dune_blog
+
+hunger_games:
+  name: image
+  record: hunger_games (Product)
+  blob: hunger_games_blob
+
+ruby_book:
+  name: image
+  record: ruby_pickaxe (Product)
+  blob: ruby_pickaxe_blob

@@ -1,7 +1,7 @@
 <div id="<%= dom_id product %>" class="w-full sm:w-auto my-5 space-y-5">
   <% if product.image.attached? %>
     <p>
-      <%= image_tag product.image, alt: product.description, size: "240" %>
+      <%= image_tag product.image, alt: product.description, size: "240", class: "rounded" %>
     </p>
   <% end %>
 
