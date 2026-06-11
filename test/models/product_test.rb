@@ -62,4 +62,32 @@ class ProductTest < ActiveSupport::TestCase
     assert product.invalid?
     assert_equal [ I18n.translate("errors.messages.taken") ], product.errors[:title]
   end
+
+  test "should validate product title minimum length" do
+    product = Product.new(title: "T", description: products(:dune).title, price: 1)
+    product.image.attach(io: File.open("test/fixtures/files/dune.jpg"), filename: "dune.jpg", content_type: "image/jpeg")
+
+    assert product.invalid?
+    assert product.errors["title"].any?
+  end
+
+  test "should fail when product title is too short" do
+    product = Product.new(title: "T", description: products(:dune).title, price: 1)
+    product.image.attach(io: File.open("test/fixtures/files/dune.jpg"), filename: "dune.jpg", content_type: "image/jpeg")
+
+    assert product.invalid?
+    assert product.errors["title"].any?
+  end
+
+  test "should fail when product title is too long" do
+    product = Product.new(
+      title: "Long title abcdefghigklmnopqrstuvwxyzabcdefghigklmnopqrstuvwxyzabcdefghigklmnopqrstuvwxyz",
+      description: products(:dune).title,
+      price: 1
+    )
+    product.image.attach(io: File.open("test/fixtures/files/dune.jpg"), filename: "dune.jpg", content_type: "image/jpeg")
+
+    assert product.invalid?
+    assert product.errors["title"].any?
+  end
 end

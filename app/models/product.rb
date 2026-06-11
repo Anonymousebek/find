@@ -5,7 +5,7 @@ class Product < ApplicationRecord
 
   has_one_attached :image
   validates :title, :description, :image, presence: true
-  validates :title, uniqueness: true
+  validates :title, uniqueness: true, length: { minimum: 2, maximum: 64 }
   validates :price, numericality: { greater_than_or_equal_to: 0.01 }
   validate :acceptable_image
 
