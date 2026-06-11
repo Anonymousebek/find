@@ -1,3 +1,5 @@
+# typed: true
+
 #---
 # Excerpted from "Agile Web Development with Rails 8",
 # published by The Pragmatic Bookshelf.
@@ -24,6 +26,7 @@ product = Product.create(title: 'Programming Ruby 3.3 (5th Edition)',
     </p>),
   price: 33.95)
 
+product.image.attach(io: File.open(Rails.root.join('db', 'images', 'ruby5.jpg')), filename: 'ruby5.jpg')
 
 product.save!
 # . . .
@@ -43,8 +46,9 @@ product = Product.create(title: 'Rails Scales!',
     </p>),
   price: 30.95)
 
+product.image.attach(io: File.open(Rails.root.join('db', 'images', 'cprpo.jpg')), filename: 'cprpo.jpg')
 
-  product.save!
+product.save!
 # . . .
 
 product = Product.create(title: 'Modern Front-End Development for Rails, Second Edition',
@@ -62,5 +66,6 @@ product = Product.create(title: 'Modern Front-End Development for Rails, Second 
     </p>),
   price: 28.95)
 
+product.image.attach(io: File.open(Rails.root.join('db', 'images', 'nrclient2.jpg')), filename: 'nrclient2.jpg')
 
 product.save!
