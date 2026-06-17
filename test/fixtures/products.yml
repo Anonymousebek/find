@@ -9,3 +9,8 @@ hunger_games:
   title: The Hunger Games
   description: The Hunger Games book
   price: 19.99
+
+deletable:
+  title: Deletable
+  description: This product is used to test deletion
+  price: 10.00

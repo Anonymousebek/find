@@ -1,0 +1,38 @@
+<div id="<%= dom_id cart %>" class="w-full sm:w-auto my-5 space-y-5">
+  <h2 class="font-bold text-lg mb-3">Your Cart</h2>
+
+  <ul class="list-none list-inside divide-y border-t">
+    <% if cart.line_items.any? %>
+      <% cart.line_items.each do |item| %>
+        <li class="flex flex-row items-center gap-2 p-1">
+          <p>
+            <%= item.quantity %>
+            &times;
+            <%= item.product.title %>
+          </p>
+          <p class="font-bold ml-auto mr-4"><%= number_to_currency(item.total_price) %></p>
+          <%= button_to  line_item_url(item), method: :delete, class: "cursor-pointer text-2xl text-red-500 transition hover:text-red-700", data: { turbo_confirm: "Are you sure?" } do %>
+            &times;
+          <% end %>
+
+        </li>
+      <% end %>
+    <% else %>
+      <li class="p-2 text-black/70 text-center">Cart is empty</li>
+    <% end %>
+    <li class="flex font-bold p-1">
+      <p class="ml-auto mr-3">
+        Total:
+      </p>
+      <p>
+        <%= number_to_currency cart.total_price %>
+      </p>
+    </li>
+  </ul>
+
+  <%= button_to "Delete Cart",
+  cart_url,
+  method: :delete,
+  class:
+    "cursor-pointer px-3 py-0.5 bg-red-500 text-white rounded-lg hover:opacity-90" %>
+</div>

@@ -23,18 +23,18 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
+  <body class="flex flex-col">
     <header class="bg-green-700">
       <%= image_tag "logo.svg", alt: "Find Online Bookshelf" %>
       <h1><%= @page_title %></h1>
     </header>
-    <section class="flex">
-      <nav class="bg-green-900 p-6 min-w-40">
+    <section class="flex h-full">
+      <nav class="bg-green-900 p-6 min-w-40 min-h-screen">
         <ul class="text-gray-100 leading-8 sticky top-0">
-          <li><%= link_to "Home", root_path %></li>
-          <li><%= link_to "Questions", store_index_url %></li>
-          <li><%= link_to "News", store_index_url %></li>
-          <li><%= link_to "Contact", store_index_url %></li>
+          <li><%= link_to "Home", root_path, class: "hover:text-white", disabled: true %></li>
+          <li><%= link_to "Questions", store_index_url, class: "hover:text-white" %></li>
+          <li><%= link_to "News", store_index_url, class: "hover:text-white" %></li>
+          <li><%= link_to "Contact", store_index_url, class: "hover:text-white" %></li>
         </ul>
       </nav>
       <main class="container mx-auto mt-4 px-5 py-2 flex">

@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :line_items, only: [ :index, :create, :edit, :show, :update, :destroy ]
+  resource :cart, only: [ :show, :destroy ], constraints: { format: /(json|xml)/ }
   root "store#index"
   get "store", to: "store#index", as: "store_index"
   resources :products

@@ -10,5 +10,5 @@ hunger_games:
 
 ruby_book:
   name: image
-  record: ruby_pickaxe (Product)
+  record: deletable (Product)
   blob: ruby_pickaxe_blob

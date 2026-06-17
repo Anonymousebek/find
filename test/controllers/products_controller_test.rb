@@ -1,3 +1,5 @@
+# typed: true
+
 require "test_helper"
 
 class ProductsControllerTest < ActionDispatch::IntegrationTest
@@ -48,9 +50,17 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
 
   test "should destroy product" do
     assert_difference("Product.count", -1) do
-      delete product_url(@product)
+      delete product_url(products(:deletable))
     end
 
     assert_redirected_to products_url
+  end
+
+  test "should prevent product deletion if line item is referencing to it" do
+    assert_raises ActiveRecord::RecordNotDestroyed do
+      delete product_url(products(:dune))
+    end
+
+    assert Product.exists?(products(:dune).id)
   end
 end
