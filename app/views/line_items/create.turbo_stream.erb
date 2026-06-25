@@ -2,6 +2,10 @@
   <%= render partial: "store/notice" %>
 <% end %>
 
+<%= turbo_stream.replace "alert" do %>
+  <%= render partial: "store/alert" %>
+<% end %>
+
 <%= turbo_stream.replace "cart" do %>
   <%= render partial: "layouts/cart", locals: { cart: @cart } %>
 <% end %>

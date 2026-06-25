@@ -41,7 +41,7 @@
             <li><%= link_to "Contact", store_index_path, class: "hover:text-white" %></li>
             <li><%= link_to "Products", products_path, class: "hover:text-white" %></li>
           </ul>
-          <%= turbo_stream_from "cart" %>
+          <%= turbo_stream_from @cart %>
           <%= render "layouts/cart", cart: @cart %>
         </div>
       </nav>

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :orders
   resources :line_items, only: [ :create, :update, :destroy ] do
     member do
       patch :increment

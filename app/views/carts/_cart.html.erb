@@ -18,10 +18,15 @@
   </div>
 
   <% unless cart.line_items.empty? %>
-    <%= button_to "Empty Cart",
-    cart_url,
-    method: :delete,
-    class:
-      "ml-auto cursor-pointer px-3 py-1 bg-blue-400 text-white rounded-lg hover:opacity-90" %>
+    <div class="flex flex-row flex-wrap gap-3">
+      <%= button_to "Empty Cart",
+      cart_path,
+      method: :delete,
+      class:
+        "ml-auto cursor-pointer px-3 py-1 bg-orange-500 text-white rounded-lg hover:opacity-80" %>
+      <%= link_to "Checkout",
+      new_order_path,
+      class: "px-3 py-1 bg-blue-400 text-white rounded-lg hover:bg-blue-600" %>
+    </div>
   <% end %>
 </div>

@@ -2,7 +2,7 @@
   id="<%= dom_id product %>"
   class="flex py-5 <%= 'product-highlight' if product == current_product %>"
 >
-  <div class="relative mr-6 group w-40 h-48">
+  <div class="overflow-hidden relative mr-6 group w-40 h-48">
     <div class="w-40 h-48">
       <%= image_tag product.image,
       width: "160",
@@ -18,8 +18,8 @@
     ></span>
     <div
       class="
-        absolute z-10 top-0 left-0 flex w-full h-full transition-transform scale-0
-        group-hover:scale-100
+        absolute z-10 top-0 left-0 flex w-full h-full transition-transform
+        translate-y-40 group-hover:translate-y-0
       "
     >
       <%= button_to line_items_path(product_id: product), form_class: "flex justify-center w-full", class: "border px-2 rounded border-white text-white cursor-pointer hover:bg-white hover:text-black transition h-8 mt-auto mb-5" do %>

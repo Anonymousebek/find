@@ -36,7 +36,8 @@ class LineItemsController < ApplicationController
   end
 
   def increment
-    @line_item.increment! "quantity"
+    @line_item.cart.add_product(@line_item.product)
+
     respond_to do |format|
       format.turbo_stream
       format.html { redirect_to store_index_path, status: :see_other, notice: "Line Item quantity was increased." }
