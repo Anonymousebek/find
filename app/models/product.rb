@@ -1,5 +1,9 @@
 class Product < ApplicationRecord
-  after_commit -> { broadcast_refresh_later_to "products"  }
+  after_commit -> {
+    broadcast_replace_later_to "products_detail", partial: "products/product"
+    broadcast_replace_later_to "products_list", partial: "products/product_item"
+    broadcast_replace_later_to "store/products", partial: "store/product"
+  }
 
   has_one_attached :image
   validates :title, :description, :image, presence: true

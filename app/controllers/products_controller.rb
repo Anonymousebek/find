@@ -39,10 +39,10 @@ class ProductsController < ApplicationController
   def update
     respond_to do |format|
       if @product.update(product_params)
+        format.turbo_stream { @current_product = @product }
         format.html { redirect_to @product, notice: "Product was successfully updated.", status: :see_other }
         format.json { render :show, status: :ok, location: @product }
       else
-        puts @product.errors.full_messages
         format.html { render :edit, status: :unprocessable_content }
         format.json { render json: @product.errors, status: :unprocessable_content }
       end

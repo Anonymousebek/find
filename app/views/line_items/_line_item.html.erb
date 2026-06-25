@@ -1,8 +1,30 @@
-<div id="<%= dom_id line_item %>" class="w-full sm:w-auto my-5 space-y-5">
-  <div>
-    <strong class="block font-medium mb-1">Product:</strong>
-    <%= line_item.product.title %>
-    &times;
-    <%= line_item.quantity %>
+<div
+  id="<%= dom_id(line_item) %>"
+  class="
+    flex flex-row items-center gap-2 p-1 <%= 'line-item-highlight' if line_item == current_item %>
+  "
+>
+  <p>
+    <%= link_to product_path(line_item.product), class: "group" do %>
+      <%= line_item.quantity %>
+      &times;
+      <span class="group-hover:underline">
+        <%= line_item.product.title %>
+      </span>
+    <% end %>
+  </p>
+  <p class="font-bold ml-auto mr-1"><%= number_to_currency(line_item.total_price) %></p>
+  <div class="flex flex-col items-center gap-1">
+    <%= button_to increment_line_item_path(line_item), method: :patch, class: "cursor-pointer text-xl text-green-500 transition hover:text-green-700" do %>
+      &plus;
+    <% end %>
+
+    <%= button_to line_item_path(line_item), method: :delete, class: "cursor-pointer text-2xl text-red-500 transition hover:text-red-700", data: { turbo_confirm: "Are you sure?" } do %>
+      &times;
+    <% end %>
+
+    <%= button_to decrement_line_item_path(line_item), method: :patch, class: "cursor-pointer text-xl text-orange-400 transition hover:text-orange-700" do %>
+      &minus;
+    <% end %>
   </div>
 </div>

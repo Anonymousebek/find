@@ -1,16 +1,7 @@
-<div class="w-full">
-  <% if notice.present? %>
-    <p
-      class="
-        py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block
-      "
-      id="notice"
-    >
-      <%= notice %>
-    </p>
-  <% end %>
+<%= turbo_stream_from "products" %>
 
-  <p><%= pluralize(@counter, "time") %></p>
+<div class="w-full">
+  <%= render "notice" %>
 
   <h2 class="font-bold text-xl mb-3 pb-2 border-b-2">Books Catalog</h2>
 
@@ -18,26 +9,7 @@
     <% cache @products do %>
       <% @products.each do |product| %>
         <% cache product do %>
-          <li class="flex py-5">
-            <%= image_tag product.image,
-            width: "160",
-            height: "192",
-            class: "object-contain w-40 h-48 shadow-md mr-6",
-            alt: product.title %>
-
-            <div class="flex flex-col">
-              <h2 class="font-bold text-lg mb-3"><%= product.title %></h2>
-              <%= sanitize(product.description.truncate(150)) %>
-              <div class="my-2">
-                <%= number_to_currency(product.price) %>
-              </div>
-              <%= button_to "Add to Cart",
-              line_items_path(product_id: product),
-              form_class: "mt-auto",
-              class:
-                "py-1.25 px-3 bg-green-600 text-green-50 rounded-md cursor-pointer hover:opacity-80" %>
-            </div>
-          </li>
+          <%= render partial: "product", object: product %>
         <% end %>
       <% end %>
     <% end %>

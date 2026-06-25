@@ -24,18 +24,26 @@
   </head>
 
   <body class="flex flex-col">
-    <header class="bg-green-700">
+    <header class="flex flex-row items-center bg-green-700 text-gray-100">
       <%= image_tag "logo.svg", alt: "Find Online Bookshelf" %>
       <h1><%= @page_title %></h1>
+      <div class="ml-auto mr-6 hover:underline">
+        <%= link_to "Cart", cart_path %>
+      </div>
     </header>
     <section class="flex h-full">
-      <nav class="bg-green-900 p-6 min-w-40 min-h-screen">
-        <ul class="text-gray-100 leading-8 sticky top-0">
-          <li><%= link_to "Home", root_path, class: "hover:text-white", disabled: true %></li>
-          <li><%= link_to "Questions", store_index_url, class: "hover:text-white" %></li>
-          <li><%= link_to "News", store_index_url, class: "hover:text-white" %></li>
-          <li><%= link_to "Contact", store_index_url, class: "hover:text-white" %></li>
-        </ul>
+      <nav class="bg-green-900 p-4 min-w-60 max-w-60 min-h-screen">
+        <div class="sticky top-0">
+          <ul class="text-gray-100 leading-8">
+            <li><%= link_to "Home", root_path, class: "hover:text-white" %></li>
+            <li><%= link_to "Questions", store_index_path, class: "hover:text-white" %></li>
+            <li><%= link_to "News", store_index_path, class: "hover:text-white" %></li>
+            <li><%= link_to "Contact", store_index_path, class: "hover:text-white" %></li>
+            <li><%= link_to "Products", products_path, class: "hover:text-white" %></li>
+          </ul>
+          <%= turbo_stream_from "cart" %>
+          <%= render "layouts/cart", cart: @cart %>
+        </div>
       </nav>
       <main class="container mx-auto mt-4 px-5 py-2 flex">
         <%= yield %>

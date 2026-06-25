@@ -1,0 +1,45 @@
+<li
+  id="<%= dom_id product %>"
+  class="flex py-5 <%= 'product-highlight' if product == current_product %>"
+>
+  <div class="relative mr-6 group w-40 h-48">
+    <div class="w-40 h-48">
+      <%= image_tag product.image,
+      width: "160",
+      height: "192",
+      class: "object-contain",
+      alt: product.title %>
+    </div>
+    <span
+      class="
+        absolute w-full h-full top-0 left-0 bg-transparent transition
+        group-hover:bg-black/60
+      "
+    ></span>
+    <div
+      class="
+        absolute z-10 top-0 left-0 flex w-full h-full transition-transform scale-0
+        group-hover:scale-100
+      "
+    >
+      <%= button_to line_items_path(product_id: product), form_class: "flex justify-center w-full", class: "border px-2 rounded border-white text-white cursor-pointer hover:bg-white hover:text-black transition h-8 mt-auto mb-5" do %>
+        <span class="transition-transform hover:scale-110">
+          &#128722; Add
+        </span>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="flex flex-col">
+    <h2 class="font-bold text-lg mb-3"><%= product.title %></h2>
+    <%= sanitize(product.description.truncate(150)) %>
+    <div class="my-2">
+      <%= number_to_currency(product.price) %>
+    </div>
+    <%= button_to "Add to Cart",
+    line_items_path(product_id: product),
+    form_class: "mt-auto",
+    class:
+      "py-1.25 px-3 bg-green-600 text-green-50 rounded-md cursor-pointer hover:opacity-80" %>
+  </div>
+</li>

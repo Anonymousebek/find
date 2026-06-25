@@ -1,20 +1,56 @@
-<div id="<%= dom_id product %>" class="w-full sm:w-auto my-5 space-y-5">
+<%= turbo_stream_from "products_detail" %>
+
+<div
+  id="<%= dom_id product %>"
+  class="
+    w-full sm:w-auto my-5 space-y-5 <%= 'product-highlight' if product == current_product %>
+  "
+>
   <% if product.image.attached? %>
     <p>
-      <%= image_tag product.image, alt: product.description, size: "240", class: "rounded" %>
+      <%= image_tag product.image,
+      alt: product.title,
+      width: "160",
+      height: "200",
+      class: "rounded" %>
     </p>
   <% end %>
 
-  <div>
-    <strong class="block font-medium mb-1">Title:</strong>
+  <p class="flex flex-col">
+    <strong class="font-medium">Title:</strong>
     <%= product.title %>
+  </p>
+  <div class="flex flex-col">
+    <strong class="font-medium">Description:</strong>
+    <%= sanitize(product.description) %>
   </div>
-  <div>
-    <strong class="block font-medium mb-1">Description:</strong>
-    <%= product.description %>
-  </div>
-  <div>
-    <strong class="block font-medium mb-1">Price:</strong>
-    <%= product.price %>
-  </div>
+  <p class="flex flex-row gap-1">
+    <strong class="font-medium mb-1">Price:</strong>
+    <%= number_to_currency product.price %>
+  </p>
+
+  <ul class="flex flex-row flex-wrap gap-2">
+    <li>
+      <%= link_to "Edit this product",
+      edit_product_path(product),
+      class:
+        "w-full sm:w-auto text-center rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
+    </li>
+    <li>
+      <%= link_to "Back to products",
+      products_path,
+      class:
+        "w-full sm:w-auto text-center rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
+    </li>
+    <li>
+      <%= button_to "Destroy this product",
+      product,
+      method: :delete,
+      class:
+        "w-full rounded-md px-3.5 py-2.5 text-white bg-red-600 hover:bg-red-500 font-medium cursor-pointer",
+      data: {
+        turbo_confirm: "Are you sure?",
+      } %>
+    </li>
+  </ul>
 </div>

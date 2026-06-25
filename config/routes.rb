@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
-  resources :line_items, only: [ :index, :create, :edit, :show, :update, :destroy ]
+  resources :line_items, only: [ :create, :update, :destroy ] do
+    member do
+      patch :increment
+      patch :decrement
+    end
+  end
   resource :cart, only: [ :show, :destroy ], constraints: { format: /(json|xml)/ }
   root "store#index"
   get "store", to: "store#index", as: "store_index"
